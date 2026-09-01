@@ -1,0 +1,31 @@
+# Android 编译产物
+*.iml
+.gradle/
+local.properties
+.idea/
+**/build/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# 编译好的 APK 和本机归档目录不入库
+*.apk
+*.aab
+app【bilibili】/
+app分类/
+
+# ADB platform-tools（体积较大，用户自行从 https://developer.android.com/tools/releases/platform-tools 下载）
+tools/platform-tools/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# 本机给 AI 的完整说明，不推送到 GitHub
+README.local.md
+
+# local Chinese notes / version history — not on GitHub
+README.LOCAL.md
+版本记录.md

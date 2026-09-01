@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:id="@+id/tvSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="#212121"
+            android:paddingBottom="12dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#EEEEEE"
+            android:layout_marginBottom="12dp" />
+
+        <CheckBox
+            android:id="@+id/cbMerge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="合并为 MP4（推荐）"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#212121"
+            android:checked="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="自动用安卓原生 MediaMuxer 把 audio.m4s + video.m4s 合并成可播放的 .mp4 文件（不重新编码，速度快）"
+            android:textSize="11sp"
+            android:textColor="#757575"
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="8dp" />
+
+        <CheckBox
+            android:id="@+id/cbDeleteOriginal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="删除 B 站缓存源文件夹"
+            android:textSize="14sp"
+            android:textColor="#D32F2F"
+            android:checked="false" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="⚠ 合并 MP4 成功后，删除 Android/data/tv.danmaku.bili/download/.../c_XXX（B 站缓存源），释放手机存储空间。仅在「合并为 MP4」勾选时生效。"
+            android:textSize="11sp"
+            android:textColor="#757575"
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="8dp" />
+
+        <CheckBox
+            android:id="@+id/cbDeleteExportedM4s"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="删除导出目录中的 c_XXX 副本"
+            android:textSize="14sp"
+            android:textColor="#212121"
+            android:checked="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="合并 MP4 成功后，删除导出目录下的 c_XXX 文件夹（含 audio.m4s、video.m4s、entry.json、弹幕等）。\n保留则可继续访问 entry.json/弹幕等附加文件。仅在「合并为 MP4」勾选时生效。"
+            android:textSize="11sp"
+            android:textColor="#757575"
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="8dp" />
+
+        <CheckBox
+            android:id="@+id/cbRenameToTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="用视频标题命名系列文件夹"
+            android:textSize="14sp"
+            android:textColor="#212121"
+            android:checked="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="把系列文件夹从原始 ID 改名为 entry.json 中的 title（去除 Windows/安卓非法字符）"
+            android:textSize="11sp"
+            android:textColor="#757575"
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="8dp" />
+
+    </LinearLayout>
+</ScrollView>

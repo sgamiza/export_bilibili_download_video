@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FAFAFA">
+
+    <!-- 顶部标题栏（含折叠按钮 + 紧凑导出按钮）-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="#2979FF"
+        android:padding="12dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="阿米B站视频导出"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvHeaderSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="访问 Android/data/tv.danmaku.bili/download"
+                android:textColor="#BBDEFB"
+                android:textSize="11sp"
+                android:paddingTop="2dp" />
+        </LinearLayout>
+
+        <!-- 紧凑导出按钮（折叠时仍可导出，加载后显示） -->
+        <Button
+            android:id="@+id/btnExportCompact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="导出"
+            android:textSize="12sp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp"
+            android:layout_marginStart="6dp"
+            android:backgroundTint="#FFFFFF"
+            android:textColor="#2979FF"
+            android:visibility="gone" />
+
+        <!-- 工具栏折叠/展开按钮 -->
+        <Button
+            android:id="@+id/btnToggleToolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="▲"
+            android:textSize="14sp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp"
+            android:layout_marginStart="4dp"
+            android:backgroundTint="#1565C0"
+            android:textColor="#FFFFFF"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <!-- 可折叠工具区（状态/授权/搜索/排序/操作按钮都在这里） -->
+    <LinearLayout
+        android:id="@+id/collapsibleSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- 状态卡片 -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="正在初始化..."
+                    android:textSize="13sp"
+                    android:textColor="#333333"
+                    android:background="#FFFFFF"
+                    android:padding="12dp"
+                    android:elevation="2dp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- 授权按钮区域 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="12dp"
+            android:paddingBottom="8dp">
+
+            <Button
+                android:id="@+id/btnAccessShizuku"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="① Shizuku（★ 完美方案，需先装 Shizuku APP）"
+                android:backgroundTint="#E91E63"
+                android:textColor="#FFFFFF"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btnAccessCustom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="② 中转复制（无需 ADB，可靠备用）"
+                android:backgroundTint="#00897B"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="8dp"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btnAccessSAF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="③ SAF 直达 download（仅 Android 11/12）"
+                android:backgroundTint="#2979FF"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="8dp"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btnAccessManage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="④ 完全文件访问权限（部分 ROM 有效）"
+                android:backgroundTint="#455A64"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="8dp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <!-- 搜索框 -->
+        <LinearLayout
+            android:id="@+id/toolbarSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp"
+            android:paddingBottom="4dp"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/etSearch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="🔍 搜索系列或视频标题…"
+                android:textSize="13sp"
+                android:maxLines="1"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:background="@android:drawable/edit_text"
+                android:autofillHints="" />
+
+            <Button
+                android:id="@+id/btnClearSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✕"
+                android:textSize="13sp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:paddingHorizontal="12dp"
+                android:layout_marginStart="6dp"
+                android:backgroundTint="#90A4AE"
+                android:textColor="#FFFFFF"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <!-- 排序工具栏 -->
+        <LinearLayout
+            android:id="@+id/toolbarSort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp"
+            android:paddingBottom="4dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="排序"
+                android:textSize="12sp"
+                android:textColor="#555555"
+                android:layout_marginEnd="6dp" />
+
+            <Spinner
+                android:id="@+id/spinnerSort"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/btnExpandAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="展开"
+                android:textSize="11sp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:paddingHorizontal="10dp"
+                android:layout_marginStart="6dp"
+                android:backgroundTint="#90A4AE"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btnCollapseAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="折叠"
+                android:textSize="11sp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:paddingHorizontal="10dp"
+                android:layout_marginStart="6dp"
+                android:backgroundTint="#90A4AE"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+        <!-- 操作按钮 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="12dp"
+            android:paddingBottom="8dp">
+
+            <Button
+                android:id="@+id/btnSelectAll"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="全选"
+                android:backgroundTint="#546E7A"
+                android:textColor="#FFFFFF"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btnExportSelected"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="导出选中视频到 Downloads"
+                android:backgroundTint="#00897B"
+                android:textColor="#FFFFFF"
+                android:layout_marginStart="8dp"
+                android:visibility="gone" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 进度条区（始终可见，导出时显示） -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="12dp"
+        android:paddingBottom="6dp">
+
+        <!-- 横向进度条（带百分比，导出时显示） -->
+        <ProgressBar
+            android:id="@+id/progressExport"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:max="100"
+            android:progress="0"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="4dp">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvProgress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="12sp"
+                android:textColor="#555555"
+                android:layout_marginStart="8dp"
+                android:visibility="gone" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 视频列表 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#FFFFFF"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp" />
+
+</LinearLayout>
